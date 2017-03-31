@@ -1,0 +1,33 @@
+[
+    {
+        "id": "tools",
+        "children":
+        [
+            {
+                "id": "ocn_decompress",
+                "caption": "OCN_DeCompress",
+                "children":
+                [
+                    {
+                        "caption": "Compress view",
+                        "command": "compress_view"
+                    },
+                    {
+                        "caption": "-"
+                    },
+                    {
+                        "caption": "Decompress Files",
+                        "command": "Decompress_files  "
+                    },
+                    {
+                        "caption": "Compress Files",
+                        "command": "Compress_files   "
+                    },
+                    {
+                        "caption": "-"
+                    },
+                ]
+            }
+        ]
+    }
+]
