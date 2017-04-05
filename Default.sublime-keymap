@@ -1,0 +1,4 @@
+[
+    { "keys": ["alt+c"], "command": "compress_view" },
+    { "keys": ["alt+d"], "command": "decompress_view"},
+]

@@ -16,16 +16,39 @@
                         "caption": "-"
                     },
                     {
-                        "caption": "Decompress Files",
-                        "command": "Decompress_files  "
-                    },
-                    {
-                        "caption": "Compress Files",
-                        "command": "Compress_files   "
+                        "caption": "Decompress view",
+                        "command": "decompress_view"
                     },
                     {
                         "caption": "-"
                     },
+                ]
+            }
+        ]
+    },
+        {
+        "caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "OCN_DeCompress",
+                        "children":
+                        [
+                            {
+                                "caption": "Setting Filepath – User",
+                                "command": "edit_filepath_user",
+
+                            }
+                        ]
+                    }
                 ]
             }
         ]
