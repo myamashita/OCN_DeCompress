@@ -9,28 +9,32 @@ DEFAULT_PATH = """{// Define your custom folder here
         "Uncompress": " ",
 }"""
 
+
 def get_setting(key, default=None):
     settings = sublime.load_settings('OCN_DeCompress.sublime-settings')
     os_specific_settings = {}
     return os_specific_settings.get(key, settings.get(key, default))
 
+
 class CompressViewCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        compress = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Compressed\\')
+        compress = os.path.join(sublime.packages_path(),
+                                'OCN_DeCompress\\OCN_Compressed\\')
         if not os.path.exists(os.path.dirname(compress)):
             os.makedirs(compress)
-        
+
         package_dir = get_setting('Compress')
         if not os.path.exists(package_dir):
-            package_dir = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Compressed\\')
+            package_dir = os.path.join(
+                sublime.packages_path(), 'OCN_DeCompress\\OCN_Compressed\\')
         filename = self.view.name() if self.view.name() != '' else self.view.file_name()
         name = os.path.basename(filename)
         file = sublime_api.view_cached_substr(self.view.view_id,
                                               0, self.view.size())
         file = file.replace('\n', '\r\n')
         file = file.encode('cp1252', 'ignore')
-        compress_name = package_dir +  name + '_gz'
+        compress_name = package_dir + name + '_gz'
         filegz = open(compress_name, 'wb')
         textcompre = zlib.compress(file)
         filegz.write(textcompre)
@@ -42,14 +46,18 @@ class CompressViewCommand(sublime_plugin.TextCommand):
             self.view.run_command('save')
             self.view.close()
 
+
 class DecompressViewCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
-        uncompress = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
+        uncompress = os.path.join(
+            sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
         if not os.path.exists(os.path.dirname(uncompress)):
             os.makedirs(uncompress)
         package_dir = get_setting('Uncompress')
-        if not os.path.exists(package_dir):            package_dir = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
+        if not os.path.exists(package_dir):
+            package_dir = os.path.join(
+                sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
         filename = self.view.name() if self.view.name() != '' else self.view.file_name()
         name = os.path.basename(filename)
         file = sublime_api.view_cached_substr(self.view.view_id,
@@ -66,8 +74,10 @@ class DecompressViewCommand(sublime_plugin.TextCommand):
 
 
 class EditFilepathUserCommand(sublime_plugin.WindowCommand):
+
     def run(self):
-        filepath = os.path.join(sublime.packages_path(), 'User\OCN_DeCompress.sublime-settings')
+        filepath = os.path.join(sublime.packages_path(),
+                                'User\OCN_DeCompress.sublime-settings')
         if not os.path.isfile(filepath):
             with open(filepath, 'w') as f:
                 f.write(DEFAULT_PATH)
