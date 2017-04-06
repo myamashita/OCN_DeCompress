@@ -5,8 +5,8 @@ import sublime_api
 import sublime_plugin
 
 DEFAULT_PATH = """{// Define your custom folder here
-        "Compress": "",
-        "Uncompress": "",
+        "Compress": " ",
+        "Uncompress": " ",
 }"""
 
 def get_setting(key, default=None):
@@ -17,8 +17,12 @@ def get_setting(key, default=None):
 class CompressViewCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
+        compress = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Compressed\\')
+        if not os.path.exists(os.path.dirname(compress)):
+            os.mkdir(compress)
+        
         package_dir = get_setting('Compress')
-        if package_dir == None:
+        if not os.path.exists(package_dir):
             package_dir = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Compressed\\')
         filename = self.view.name() if self.view.name() != '' else self.view.file_name()
         name = os.path.basename(filename)
@@ -41,10 +45,11 @@ class CompressViewCommand(sublime_plugin.TextCommand):
 class DecompressViewCommand(sublime_plugin.TextCommand):
 
     def run(self, edit):
+        uncompress = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
+        if not os.path.exists(os.path.dirname(uncompress)):
+            os.mkdir(uncompress)
         package_dir = get_setting('Uncompress')
-        if package_dir == None:
-            package_dir = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
-        print
+        if not os.path.exists(package_dir):            package_dir = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
         filename = self.view.name() if self.view.name() != '' else self.view.file_name()
         name = os.path.basename(filename)
         file = sublime_api.view_cached_substr(self.view.view_id,

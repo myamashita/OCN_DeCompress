@@ -4,13 +4,13 @@ Small plugin which automatically decompresses or compresses with zlib in Sublime
 
 This is an alpha release, use with care, feedback & code welcome!
 
-# Using OCN_DeCompress
+## Using OCN_DeCompress
 There are 2 keymap:
 
-- "Alt + C" - to compress
-- "Alt + D" - to uncompress
+- `Alt + C` - **to compress**
+- `Alt + D` - **to uncompress**
 
-# Menu
+## Menu
 There is a menu item under `Preferences\Package Settings\OCN_DeCompress`:
 
 - `Setting Filepath - User` - Open a custom setting to provide a user path to save file's Compressed or Uncompressed
@@ -18,3 +18,7 @@ There is a menu item under `Preferences\Package Settings\OCN_DeCompress`:
 There are 2 menu items under `Tools\OCN_DeCompress`:
 - `Compress view` - Compress the view file in folder set in User Preferences
 - `Uncompress view` - Uncompress the view file in folder set in User Preferences.
+
+### If the directory set in User Preferences does not exists
+file's are write in `OCN\_Compressed` or `OCN\_Uncompressed`
+
