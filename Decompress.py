@@ -19,7 +19,7 @@ class CompressViewCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         compress = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Compressed\\')
         if not os.path.exists(os.path.dirname(compress)):
-            os.mkdir(compress)
+            os.makedirs(compress)
         
         package_dir = get_setting('Compress')
         if not os.path.exists(package_dir):
@@ -47,7 +47,7 @@ class DecompressViewCommand(sublime_plugin.TextCommand):
     def run(self, edit):
         uncompress = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
         if not os.path.exists(os.path.dirname(uncompress)):
-            os.mkdir(uncompress)
+            os.makedirs(uncompress)
         package_dir = get_setting('Uncompress')
         if not os.path.exists(package_dir):            package_dir = os.path.join(sublime.packages_path(), 'OCN_DeCompress\\OCN_Uncompressed\\')
         filename = self.view.name() if self.view.name() != '' else self.view.file_name()
